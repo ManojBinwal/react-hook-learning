@@ -16,6 +16,14 @@ function App(props) {
     });
 
   },[userId]);
+
+  useEffect(()=>{
+    document.addEventListener('mousemove', onmousemove);
+
+    return() => {
+      document.removeEventListener('mousemove', onmousemove)
+    };
+  }); //use effect hook is analogus to react's component did mount method
  
 
 
