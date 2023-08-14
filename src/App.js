@@ -1,28 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
 
-class App extends React.Component{
+import React, {useState} from 'react';
 
-constructor (props) {
-  super (props);
-  this.state = {email: ''}
-}
+function App() {
+  const emailState = useState('a@a.com');
+  const email = emailState[0];
+  const setEmail = emailState[1];
 
-handleChanges = (e) => {
-  this.setState({
-    email: e.target.value
-  })
-}
-render(){
-return (
-  <div className="App">
-    <input value = {this.state.email}
-    onChange = {this.handleChanges} />
-   <p>Email: {this.state.email}</p>
-  </div>
-);
-}
+  function handleChange (e) {
+    setEmail(e.target.value)
+  }
+
+  return (
+    <div className='App' style = {{ padding: 10}} >
+      <input 
+        value={email}
+        onChange={handleChange} />
+        <p>Email:{email}</p> 
+    </div>
+  );
 }
 
   
