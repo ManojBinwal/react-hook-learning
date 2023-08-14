@@ -1,37 +1,37 @@
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-function App() {
-  // const emailState = useState('a@a.com');
-  // const email = emailState[0];
-  // const setEmail = emailState[1];
+function App(props) {
+  const [userId, setUserId] = useState('1');
+  const [data,setData] = useState([]);
 
-  // const nameState = useState('Manoj');
-  // const name = nameState[0];
-  // const setName = nameState[1];
+  useEffect(()=> {
+    const url = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
 
-  const [email,setEmail] = useState('');
-  const [name,setName] = useState('');
+    fetch(url)
+    .then((response)=>response.json())
+    .then((data)=> {
+      console.log('DATA', data);
+      setData(data);
+    });
 
-  function handleChange (e) {
-    setEmail(e.target.value)
-  }
-  function handleChangeName (e) {
-    setName(e.target.value)
-  }
+  },[userId]);
+ 
 
-  return (
-    <div className='App' style = {{ padding: 10}} >
-      <input 
-        value={email}
-        onChange={handleChange} />
-        <input 
-        value={name}
-        onChange={handleChangeName} />
-        <p>Email:{email}</p>
-        <p>Name:{name}</p> 
-    </div>
-  );
+
+return(
+
+<div className='App' style={{paddingLeft:20}}>
+  <h1>App</h1>
+  <button onClick={()=>setUserId('2')}>Change user id to 2</button>
+  {data.map((user)=>(
+    <div> 
+      <p>{user.title}</p>
+      </div>
+  ))}
+</div>
+
+);
 }
 
   
