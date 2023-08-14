@@ -1,6 +1,17 @@
 
 import React, {useState} from 'react';
 
+function useFormInputs(initialValue) {
+  const [value,setValue] = useState('');
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+  return {
+    value,
+    onChange: handleChange,
+  }
+}
+
 function App() {
   // const emailState = useState('a@a.com');
   // const email = emailState[0];
@@ -10,26 +21,20 @@ function App() {
   // const name = nameState[0];
   // const setName = nameState[1];
 
-  const [email,setEmail] = useState('');
-  const [name,setName] = useState('');
+ 
 
-  function handleChange (e) {
-    setEmail(e.target.value)
-  }
-  function handleChangeName (e) {
-    setName(e.target.value)
-  }
+  const email = useFormInputs('');
+  const name = useFormInputs('');
+
 
   return (
     <div className='App' style = {{ padding: 10}} >
+   {/* using spread operator to shorten code (value = value onchange = onchange) */}
       <input 
-        value={email}
-        onChange={handleChange} />
-        <input 
-        value={name}
-        onChange={handleChangeName} />
-        <p>Email:{email}</p>
-        <p>Name:{name}</p> 
+        type='text' {...email} /> 
+        <input type='text'{...name} />
+        <p>Email:{email.value}</p>
+        <p>Name:{name.value}</p> 
     </div>
   );
 }
