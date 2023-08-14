@@ -1,11 +1,16 @@
 
 import React, {useState} from 'react';
 
+// creating a custom hook - create to function to contain custom hook
+
 function useFormInputs(initialValue) {
-  const [value,setValue] = useState('');
+  // using generic variables
+  const [value,setValue] = useState(''); 
+  // create a function to handle changes 
   function handleChange(e) {
     setValue(e.target.value);
   }
+  // return value as default and call handleChange on any operation and return new value
   return {
     value,
     onChange: handleChange,
@@ -13,16 +18,7 @@ function useFormInputs(initialValue) {
 }
 
 function App() {
-  // const emailState = useState('a@a.com');
-  // const email = emailState[0];
-  // const setEmail = emailState[1];
-
-  // const nameState = useState('Manoj');
-  // const name = nameState[0];
-  // const setName = nameState[1];
-
- 
-
+//  using custom hook using function
   const email = useFormInputs('');
   const name = useFormInputs('');
 
