@@ -6,8 +6,15 @@ function App() {
   const email = emailState[0];
   const setEmail = emailState[1];
 
+  const nameState = useState('Manoj');
+  const name = nameState[0];
+  const setName = nameState[1];
+
   function handleChange (e) {
     setEmail(e.target.value)
+  }
+  function handleChangeName (e) {
+    setName(e.target.value)
   }
 
   return (
@@ -15,7 +22,11 @@ function App() {
       <input 
         value={email}
         onChange={handleChange} />
-        <p>Email:{email}</p> 
+        <input 
+        value={name}
+        onChange={handleChangeName} />
+        <p>Email:{email}</p>
+        <p>Name:{name}</p> 
     </div>
   );
 }
